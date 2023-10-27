@@ -4,7 +4,6 @@
 INSTALL_DIR="$HOME/bin/myc"
 SHELL_USED=$(basename "$SHELL")
 
-echo "oi"
 # Clone the repository from GitHub
 git clone https://github.com/the-pedropaulo/mycommit.git "$INSTALL_DIR"
 
