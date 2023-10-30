@@ -9,37 +9,47 @@ def generateTextStyle(text, style=Fore.CYAN):
     textArt = pyfiglet.figlet_format(text, font="slant")
     return f"{style}{textArt}{Style.RESET_ALL}"
 
+def createQuestion(type, name, message, choices=None):
+    selectQuestionForType = {
+        'list': [{
+            'type': type,
+            'name': name,
+            'message': message,
+            'choices': choices
+        }],
+        'input': [{
+            'type': type,
+            'name': name,
+            'message': message
+        }]
+    }
 
-def menu(optionsType):
-    questionType = [
-        {
-            'type': 'list',
-            'name': 'type',
-            'message': 'Select an option:',
-            'choices': optionsType
-        }
-    ]
+    return selectQuestionForType[type]
+
+def menu():
+    questionType = createQuestion(
+        'list',
+        'type',
+        'Select an option:',
+        optionsTypeList
+    )
+
     responseType = prompt(questionType)
-    indexType = optionsType.index(responseType['type'])
-    print(optionsTypeList[indexType])
+    indexType = optionsTypeList.index(responseType['type'])
 
-    # this is select close option
     if optionsTypeList[indexType] == left:  
       return
 
-    questionDescription = [
-        {
-            'type': 'input',
-            'name': 'description',
-            'message': 'Enter a description: '
-        }
-    ]
+    questionDescription = createQuestion(
+        'input',
+        'description',
+        'Enter a description'
+    )
 
     responseDescription = prompt(questionDescription)
-
     responseFinishArray = [indexType, responseDescription['description']]
+    
     return responseFinishArray
-
 
 def pushDatas(message):
     try:
@@ -52,7 +62,7 @@ def pushDatas(message):
 
 
 def generateMessage():
-    responsesMenu = menu(optionsTypeList)
+    responsesMenu = menu()
 
     if not responsesMenu:
         textClose = generateTextStyle("SEE YOU LATER")
