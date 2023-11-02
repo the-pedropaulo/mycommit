@@ -1,3 +1,5 @@
+![screen-gif](https://media.giphy.com/media/aJ7aHht97d2xBBYmYl/giphy.gif)
+
 # Installation 💻
 
 To install MYC on your system, run the following command in your terminal:
